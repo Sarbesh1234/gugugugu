@@ -26,6 +26,7 @@ image = cv2.resize(image, (500, 500))
 #making another copy
 original = image.copy()
 
+
 #convert the image to grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -145,8 +146,8 @@ linepointtop = (landmarks[8,0],y)
 line4 = np.subtract(linepointbottom,linepointtop)[1]
 cv2.line(results,linepointtop,linepointbottom,color=(0,255,0), thickness = 2)
 cv2.putText(results,' Line 4',linepointbottom,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1,color=(0,255,0), thickness=2)
-cv2.circle(results, linepointtop, 5, color=(255,0,0), thickness=-1)    
-cv2.circle(results, linepointbottom, 5, color=(255,0,0), thickness=-1)    
+cv2.circle(results, linepointtop, 5, color=(255,0,0), thickness=-1)
+cv2.circle(results, linepointbottom, 5, color=(255,0,0), thickness=-1)
 #print(line1,line2,line3,line4)
 
 similarity = np.std([line1,line2,line3])
@@ -193,3 +194,4 @@ for i in range(1):
 
 output = np.concatenate((original,results), axis=1)
 cv2.imshow('output',output)
+cv2.waitKey(delay=0)
