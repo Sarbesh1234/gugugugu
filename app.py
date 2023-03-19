@@ -8,17 +8,19 @@ def main():
 	   [psg.Input(enable_events=True, key='-IN-',font=('Arial Bold', 12),expand_x=True),psg.FileBrowse()],
 	   [psg.Button('Submit')]
 	]
-	window = psg.Window('FileChooser Demo', layout,
-	size=(1000,700))
+	window = psg.Window('FileChooser Demo', layout,size=(1000,700))
 	while True:
 	   event, values = window.read()
-	   if event == psg.WIN_CLOSED or event == 'Exit':
-	      break
+	   if event == psg.WIN_CLOSED or event == 'Submit':
+	      file_path = values
+	      window.close()
+	      open_window();
+	      
 	window.close()
 
 def open_window():
-    layout = [[sg.Text("New Window", key="new")]]
-    window = sg.Window("Second Window", layout, modal=True)
+    layout = [[psg.Text("New Window", key="new")]]
+    window = psg.Window('Results', layout,size=(1000,700))
     choice = None
     while True:
         event, values = window.read()
