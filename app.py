@@ -9,15 +9,16 @@ def min():
     layout = [
        [psg.Text('Select a file',font=('Arial Bold', 20), expand_x=True, justification='center')],
        [psg.Input(enable_events=True, key='-IN-',font=('Arial Bold', 12),expand_x=True),psg.FileBrowse()],
-       [psg.Button('Submit')]
+       [psg.Button('Male')],
+       [psg.Button('Female')]
     ]
     window = psg.Window('FileChooser Demo', layout,size=(1000,700))
     while True:
         event, values = window.read()
-        if event == psg.WIN_CLOSED or event == 'Submit':
+        if event == psg.WIN_CLOSED or event == 'Male' or event == 'Female':
             window.close()
             file_path = values
-            essential.some_shit(str(file_path['-IN-']))
+            essential.some_shit(str(file_path['-IN-']),str(event))
 
 
 

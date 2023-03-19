@@ -13,7 +13,8 @@ from app import *
 # link = https://github.com/opencv/opencv/tree/master/data/haarcascades
 
 
-def some_shit(imagepath):
+def some_shit(imagepath, sex):
+
     face_cascade_path = "faceshapes.xml"
     #.dat file for detecting facial landmarks
     #download file path = http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
@@ -26,9 +27,10 @@ def some_shit(imagepath):
 
     #read the image
     image = cv2.imread(imagepath)
+    image2 = cv2.imread("black.jpg")
 
     #resizing the image to 000 cols nd 500 rows
-    image = cv2.resize(image, (500, 500))
+    image = cv2.resize(image, (504, 500))
     #making another copy
     original = image.copy()
 
@@ -178,13 +180,33 @@ def some_shit(imagepath):
       if similarity<10:
         if angle<160:
           print('squared shape.Jawlines are more angular')
+          if sex is "Male":
+              cv2.putText(results,
+                          'You have a squared shaped face! Rock a buzz cut,crew cut or side part since your jawline is more angular',
+                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
+                          color=(0, 255, 0), thickness=2)
+              img1 = cv2.imread("Men/Square/buzz.jpg")
+              img2 = cv2.imread("Men/Square/CrewCut.webp")
+              img3 = cv2.imread("Men/SquareSidePart.webp")
+
+          else:
+              cv2.putText(results, 'You have a squared shaped face! Rock bangs,long length hair, or a ponytail since your jawline is more angular',
+                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
+                          color=(0, 255, 0), thickness=2)
+              img1 = cv2.imread("Women/Square/Bangs.jpg")
+              img2 = cv2.imread("Women/Square/LongLen.jpg")
+              img3 = cv2.imread("Ponytail/Square/Ponytail.jpg")
           break
         else:
           print('round shape.Jawlines are not that angular')
+          cv2.putText(results, 'You have a round shaped face! Rock a side part cut since your jawlines is not that angular',
+                      linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
+                      color=(0, 255, 0), thickness=2)
           break
       if line3>line1:
         if angle<160:
           print('triangle shape.Forehead is more wider')
+
           break
       if ovalsimilarity<10:
         print('diamond shape. line2 & line4 are similar and line2 is slightly larger')
@@ -195,9 +217,31 @@ def some_shit(imagepath):
           break;
         else:
           print('oblong. face length is largest and jawlines are not angular')
+          if sex is "Male":
+              cv2.putText(results,
+                          'You have a squared shaped face! Rock a buzz cut,crew cut or side part since your jawline is more angular',
+                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
+                          color=(0, 255, 0), thickness=2)
+              img1 = cv2.imread("Men/Square/buzz.jpg")
+              img2 = cv2.imread("Men/Square/CrewCut.webp")
+              img3 = cv2.imread("Men/SquareSidePart.webp")
+
+          else:
+              cv2.putText(results, 'You have a squared shaped face! Rock bangs,long length hair, or a ponytail since your jawline is more angular',
+                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
+                          color=(0, 255, 0), thickness=2)
+              img1 = cv2.imread("Women/Square/Bangs.jpg")
+              img2 = cv2.imread("Women/Square/LongLen.jpg")
+              img3 = cv2.imread("Ponytail/Square/Ponytail.jpg")
           break;
       print("Damn! Contact the developer")
 
+    img1 = cv2.resize(img1, (504,500)) # axis zero
+    img2 = cv2.resize(img2, (504,500)) # axis one
+    # img3 = cv2.resize(img3, (1008,500))
     output = np.concatenate((original,results), axis=1)
+    output = np.concatenate((output, img1), axis=0)
+    output = np.concatenate((output, img2), axis=1)
+    # output = np.concatenate((output, img3), axis=0)
     cv2.imshow('output',output)
     cv2.waitKey(delay=0)
