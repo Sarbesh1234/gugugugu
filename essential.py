@@ -7,18 +7,17 @@ from app import *
 
 
 
-#load the image
 
-#haarcascade for detecting faces
-# link = https://github.com/opencv/opencv/tree/master/data/haarcascades
+
+
 
 
 def some_shit(imagepath, sex):
 
     face_cascade_path = "faceshapes.xml"
     #.dat file for detecting facial landmarks
-    #download file path = http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
     predictor_path = "shape_predictor_68_face_landmarks.dat"
+
     #create the haar cascade for detecting face and smile
     faceCascade = cv2.CascadeClassifier(face_cascade_path)
 
@@ -29,8 +28,9 @@ def some_shit(imagepath, sex):
     image = cv2.imread(imagepath)
     image2 = cv2.imread("black.jpg")
 
-    #resizing the image to 000 cols nd 500 rows
+    #resizing the image to 0 cols and 500 rows
     image = cv2.resize(image, (504, 500))
+
     #making another copy
     original = image.copy()
 
@@ -49,31 +49,20 @@ def some_shit(imagepath, sex):
         minSize=(100,100),
         flags=cv2.CASCADE_SCALE_IMAGE
         )
-    #Detect faces in the image
+    #More detection of faces in the image
     print("found {0} faces!".format(len(faces)) )
 
     for (x,y,w,h) in faces:
-        #draw a rectangle around the faces
+        #drawing a rectangle around the faces
         cv2.rectangle(image, (x,y), (x+w,y+h), (0,255,0), 2)
         #converting the opencv rectangle coordinates to Dlib rectangle
         dlib_rect = dlib.rectangle(int(x), int(y), int(x+w), int(y+h))
-        #detecting landmarks
+        #detecting the landmarks
         detected_landmarks = predictor(image, dlib_rect).parts()
         #converting to np matrix
         landmarks = np.matrix([[p.x,p.y] for p in detected_landmarks])
         #landmarks array contains indices of landmarks.
-        """
-        #copying the image so we can we side by side
-        landmark = image.copy()
-        for idx, point in enumerate(landmarks):
-                pos = (point[0,0], point[0,1] )
-                #annotate the positions
-                cv2.putText(landmark,str(idx),pos,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=0.4,color=(0,0,255) )
-                #draw points on the landmark positions 
-                cv2.circle(landmark, pos, 3, color=(0,255,255))
-        
-    cv2.imshow("Landmarks by DLib", landmark)
-    """
+
     #making another copy  for showing final results
     results = original.copy()
 
@@ -86,10 +75,7 @@ def some_shit(imagepath, sex):
         forehead = temp[y:y+int(0.25*h), x:x+w]
         rows,cols, bands = forehead.shape
         X = forehead.reshape(rows*cols,bands)
-        """
-        Applying kmeans clustering algorithm for forehead with 2 clusters 
-        this clustering differentiates between hair and skin (thats why 2 clusters)
-        """
+
         #kmeans
         kmeans = KMeans(n_clusters=2,init='k-means++',max_iter=300,n_init=10, random_state=0)
         y_kmeans = kmeans.fit_predict(X)
@@ -125,10 +111,7 @@ def some_shit(imagepath, sex):
     #drawing line1 on forehead with circles
     #specific landmarks are used.
     line1 = np.subtract(right+y,left+x)[0]
-    """cv2.line(results, tuple(x+left), tuple(y+right), color=(0,255,0), thickness = 2)
-    cv2.putText(results,' Line 1',tuple(x+left),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1,color=(0,255,0), thickness=2)
-    cv2.circle(results, tuple(x+left), 5, color=(255,0,0), thickness=-1)    
-    cv2.circle(results, tuple(y+right), 5, color=(255,0,0), thickness=-1)"""
+
 
     #drawing line 2 with circles
     linepointleft = (landmarks[1,0],landmarks[1,1])
