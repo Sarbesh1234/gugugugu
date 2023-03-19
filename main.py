@@ -19,10 +19,10 @@ faceCascade = cv2.CascadeClassifier(face_cascade_path)
 predictor = dlib.shape_predictor(predictor_path)
 
 #read the image
-image = cv2.imread("face.jpg")
+image = cv2.imread("vura2.png")
 
 #resizing the image to 000 cols nd 500 rows
-image = cv2.resize(image, (500, 500)) 
+image = cv2.resize(image, (500, 500))
 #making another copy
 original = image.copy()
 
@@ -117,37 +117,37 @@ for (x,y,w,h) in faces:
 #drawing line1 on forehead with circles
 #specific landmarks are used. 
 line1 = np.subtract(right+y,left+x)[0]
-cv2.line(results, tuple(x+left), tuple(y+right), color=(0,255,0), thickness = 2)
+"""cv2.line(results, tuple(x+left), tuple(y+right), color=(0,255,0), thickness = 2)
 cv2.putText(results,' Line 1',tuple(x+left),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1,color=(0,255,0), thickness=2)
 cv2.circle(results, tuple(x+left), 5, color=(255,0,0), thickness=-1)    
-cv2.circle(results, tuple(y+right), 5, color=(255,0,0), thickness=-1)        
+cv2.circle(results, tuple(y+right), 5, color=(255,0,0), thickness=-1)"""
 
 #drawing line 2 with circles
 linepointleft = (landmarks[1,0],landmarks[1,1])
 linepointright = (landmarks[15,0],landmarks[15,1])
 line2 = np.subtract(linepointright,linepointleft)[0]
 cv2.line(results, linepointleft,linepointright,color=(0,255,0), thickness = 2)
-cv2.putText(results,' Line 2',linepointleft,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1,color=(0,255,0), thickness=2)
-cv2.circle(results, linepointleft, 5, color=(255,0,0), thickness=-1)    
-cv2.circle(results, linepointright, 5, color=(255,0,0), thickness=-1)    
+cv2.putText(results,' Line 1', linepointleft,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=0.5,color=(0,255,0), thickness=2)
+cv2.circle(results, linepointleft, 5, color=(255,0,0), thickness=-0)
+cv2.circle(results, linepointright, 5, color=(255,0,0), thickness=-0)
 
 #drawing line 3 with circles
 linepointleft = (landmarks[3,0],landmarks[3,1])
 linepointright = (landmarks[13,0],landmarks[13,1])
 line3 = np.subtract(linepointright,linepointleft)[0]
 cv2.line(results, linepointleft,linepointright,color=(0,255,0), thickness = 2)
-cv2.putText(results,' Line 3',linepointleft,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1,color=(0,255,0), thickness=2)
-cv2.circle(results, linepointleft, 5, color=(255,0,0), thickness=-1)    
-cv2.circle(results, linepointright, 5, color=(255,0,0), thickness=-1)    
+cv2.putText(results,' Line 2',linepointleft,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=0.5,color=(0,255,0), thickness=2)
+cv2.circle(results, linepointleft, 5, color=(255,0,0), thickness=-0)
+cv2.circle(results, linepointright, 5, color=(255,0,0), thickness=-0)
 
 #drawing line 4 with circles
 linepointbottom = (landmarks[8,0],landmarks[8,1])
 linepointtop = (landmarks[8,0],y)
 line4 = np.subtract(linepointbottom,linepointtop)[1]
 cv2.line(results,linepointtop,linepointbottom,color=(0,255,0), thickness = 2)
-cv2.putText(results,' Line 4',linepointbottom,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1,color=(0,255,0), thickness=2)
-cv2.circle(results, linepointtop, 5, color=(255,0,0), thickness=-1)
-cv2.circle(results, linepointbottom, 5, color=(255,0,0), thickness=-1)
+cv2.putText(results,' Line 3',linepointbottom,fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=0.5,color=(0,255,0), thickness=2)
+cv2.circle(results, linepointtop, 5, color=(255,0,0), thickness=-0)
+cv2.circle(results, linepointbottom, 5, color=(255,0,0), thickness=-0)
 #print(line1,line2,line3,line4)
 
 similarity = np.std([line1,line2,line3])
