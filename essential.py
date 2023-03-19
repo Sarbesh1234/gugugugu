@@ -185,17 +185,17 @@ def some_shit(imagepath, sex):
                           'You have a squared shaped face! Rock a buzz cut,crew cut or side part since your jawline is more angular',
                           linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                           color=(0, 255, 0), thickness=2)
-              img1 = cv2.imread("Men/Square/buzz.jpg")
-              img2 = cv2.imread("Men/Square/CrewCut.webp")
-              img3 = cv2.imread("Men/Square/SidePart.webp")
+              img1 = cv2.imread("Men/Square/Buzz.jpg")
+              img2 = cv2.imread("Men/Square/CrewCut.jpg")
+              img3 = cv2.imread("Men/Square/SidePart.jpg")
 
           else:
               cv2.putText(results, 'You have a squared shaped face! Rock bangs,long length hair, or a ponytail since your jawline is more angular',
                           linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                           color=(0, 255, 0), thickness=2)
-              img1 = cv2.imread("Women/Square/Bangs.jpg")
-              img2 = cv2.imread("Women/Square/LongLen.jpg")
-              img3 = cv2.imread("Women/Square/Ponytail.jpg")
+              img1 = cv2.imread("Women/SquareW/Bangs.jpg")
+              img2 = cv2.imread("Women/SquareW/LongLen.jpg")
+              img3 = cv2.imread("Women/SquareW/Ponytail.jpg")
           break
         else:
           print('round shape.Jawlines are not that angular')
@@ -212,9 +212,9 @@ def some_shit(imagepath, sex):
               cv2.putText(results, 'You have a round jaw shaped face! Rock bun,long length hair, or shoulder length hair since your jawline is not that angular',
                           linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                           color=(0, 255, 0), thickness=2)
-              img1 = cv2.imread("Women/Round/Bun.jpg")
-              img2 = cv2.imread("Women/Round/LongLen.jpg")
-              img3 = cv2.imread("Women/Round/ShoulderLen.jpg")
+              img1 = cv2.imread("Women/RoundW/Bun.jpg")
+              img2 = cv2.imread("Women/RoundW/LongLen.jpg")
+              img3 = cv2.imread("Women/RoundW/ShoulderLen.jpg")
           cv2.putText(results, 'You have a round shaped face! Rock a side part cut since your jawlines is not that angular',
                       linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                       color=(0, 255, 0), thickness=2)
@@ -235,9 +235,9 @@ def some_shit(imagepath, sex):
               cv2.putText(results, 'You have a triangle shaped face! Rock a bun,short length, or shoulder length haircut since your forehead is more wider',
                           linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                           color=(0, 255, 0), thickness=2)
-              img1 = cv2.imread("Women/Triangle/Bun.jpg")
-              img2 = cv2.imread("Women/Triangle/ShortLen.jpg")
-              img3 = cv2.imread("Women/Triangle/ShoulderLen.jpg")
+              img1 = cv2.imread("Women/TriangleW/Bun.jpg")
+              img2 = cv2.imread("Women/TriangleW/ShortLen.jpg")
+              img3 = cv2.imread("Women/TriangleW/ShoulderLen.jpg")
 
           break
       if ovalsimilarity<10:
@@ -256,9 +256,9 @@ def some_shit(imagepath, sex):
                         'You have a diamond shaped face! Rock a bun,ponytail, or short length haircut',
                         linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                         color=(0, 255, 0), thickness=2)
-            img1 = cv2.imread("Women/Diamond/Bun.jpg")
-            img2 = cv2.imread("Women/Diamond/Ponytail.jpg")
-            img3 = cv2.imread("Women/Diamond/ShortLen.jpg")
+            img1 = cv2.imread("Women/DiamondW/Bun.jpg")
+            img2 = cv2.imread("Women/DiamondW/Ponytail.jpg")
+            img3 = cv2.imread("Women/DiamondW/ShortLen.jpg")
         break
       if line4 > line2:
         if angle<160:
@@ -276,9 +276,9 @@ def some_shit(imagepath, sex):
               cv2.putText(results, 'You have a rectangular shaped face! Rock bangs,a bun, or shoulder length haircut since your forehead is face length is largest and jawline are angular',
                           linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                           color=(0, 255, 0), thickness=2)
-              img1 = cv2.imread("Women/Rectangle/Bangs.jpg")
-              img2 = cv2.imread("Women/Rectangle/Bun.jpg")
-              img3 = cv2.imread("Women/Rectangle/ShoulderLen.jpg")
+              img1 = cv2.imread("Women/RectangleW/Bangs.jpg")
+              img2 = cv2.imread("Women/RectangleW/Bun.jpg")
+              img3 = cv2.imread("Women/RectangleW/ShoulderLen.jpg")
           break;
         else:
           print('oblong. face length is largest and jawlines are not angular')
@@ -287,7 +287,7 @@ def some_shit(imagepath, sex):
                           'You have a oblong shaped face! Rock a buzz cut,fringe cut or side part cut since your face length is largest and jawlines are not angular',
                           linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                           color=(0, 255, 0), thickness=2)
-              img1 = cv2.imread("Men/Oblong/buzz.jpg")
+              img1 = cv2.imread("Men/Oblong/Buzz.jpg")
               img2 = cv2.imread("Men/Oblong/Fringe.jpg")
               img3 = cv2.imread("Men/Oblong/SidePart.jpg")
 
@@ -295,9 +295,9 @@ def some_shit(imagepath, sex):
               cv2.putText(results, 'You have a oblong shaped face! Rock braids,a ponytail, or a shoulder length since your face length is largest and jawlines are not angular',
                           linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
                           color=(0, 255, 0), thickness=2)
-              img1 = cv2.imread("Women/Oblong/Braids.jpg")
-              img2 = cv2.imread("Women/Oblong/Ponytail.jpg")
-              img3 = cv2.imread("Women/Oblong/ShoulderLen.jpg")
+              img1 = cv2.imread("Women/OblongW/Braids.jpg")
+              img2 = cv2.imread("Women/OblongW/Ponytail.jpg")
+              img3 = cv2.imread("Women/OblongW/ShoulderLen.jpg")
           break;
       print("Damn! Contact the developer")
 
