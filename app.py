@@ -10,7 +10,9 @@ def min():
        [psg.Text('Select a file',font=('Arial Bold', 20), expand_x=True, justification='center')],
        [psg.Input(enable_events=True, key='-IN-',font=('Arial Bold', 12),expand_x=True),psg.FileBrowse()],
        [psg.Button('Male')],
-       [psg.Button('Female')]
+       [psg.Button('Female')],
+       [psg.Image('Screenshot 2023-03-19 035202.png')]
+
     ]
     window = psg.Window('FileChooser Demo', layout,size=(1000,700))
     while True:
