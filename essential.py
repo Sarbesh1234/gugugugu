@@ -6,13 +6,7 @@ from sklearn.cluster import KMeans #for clustering
 from app import *
 
 
-
-
-
-
-
-
-def some_shit(imagepath, sex):
+def calculate_shape(imagepath, sex):
 
     face_cascade_path = "faceshapes.xml"
     #.dat file for detecting facial landmarks
@@ -26,10 +20,11 @@ def some_shit(imagepath, sex):
 
     #read the image
     image = cv2.imread(imagepath)
-    image2 = cv2.imread("black.jpg")
+    text = cv2.imread("black.jpg")
 
     #resizing the image to 0 cols and 500 rows
     image = cv2.resize(image, (504, 500))
+    text = cv2.resize(text,(1008,300))
 
     #making another copy
     original = image.copy()
@@ -164,60 +159,42 @@ def some_shit(imagepath, sex):
         if angle<160:
           print('squared shape.Jawlines are more angular')
           if sex is "Male":
-              cv2.putText(results,
-                          'You have a squared shaped face! Rock a buzz cut,crew cut or side part since your jawline is more angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
+              x = 'Squared shape face: buzz, crew cut, side part'
               img1 = cv2.imread("Men/Square/Buzz.jpg")
               img2 = cv2.imread("Men/Square/CrewCut.jpg")
               img3 = cv2.imread("Men/Square/SidePart.jpg")
 
           else:
-              cv2.putText(results, 'You have a squared shaped face! Rock bangs,long length hair, or a ponytail since your jawline is more angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
               img1 = cv2.imread("Women/SquareW/Bangs.jpg")
               img2 = cv2.imread("Women/SquareW/LongLen.jpg")
               img3 = cv2.imread("Women/SquareW/Ponytail.jpg")
+              x = 'Squared shaped face: bangs, long length, ponytail'
           break
         else:
           print('round shape.Jawlines are not that angular')
           if sex is "Male":
-              cv2.putText(results,
-                          'You have a round shaped face! Rock a brushed back,buzz or sidepart since your jawline is not that angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
               img1 = cv2.imread("Men/Round/BrushedBack.jpg")
               img2 = cv2.imread("Men/Round/Buzz.jpg")
               img3 = cv2.imread("Men/Round/SidePart.jpg")
+              x = 'Round shaped face: brushed back, buzz, sidepart'
 
           else:
-              cv2.putText(results, 'You have a round jaw shaped face! Rock bun,long length hair, or shoulder length hair since your jawline is not that angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
               img1 = cv2.imread("Women/RoundW/Bun.jpg")
               img2 = cv2.imread("Women/RoundW/LongLen.jpg")
               img3 = cv2.imread("Women/RoundW/ShoulderLen.jpg")
-          cv2.putText(results, 'You have a round shaped face! Rock a side part cut since your jawlines is not that angular',
-                      linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                      color=(0, 255, 0), thickness=2)
+              x = 'Round shaped face: bun, long length, shoulder length'
           break
       if line3>line1:
         if angle<160:
           print('triangle shape.Forehead is more wider')
           if sex is "Male":
-              cv2.putText(results,
-                          'You have a triangle shaped face! Rock a brushed back cut,buzz cut or side part since your forehead is more wider',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
+              x = 'Triangle shaped face: brushed back, buzz, side part'
               img1 = cv2.imread("Men/Triangle/BrushedBack.jpg")
               img2 = cv2.imread("Men/Triangle/Buzz.jpg")
               img3 = cv2.imread("Men/Triangle/SidePart.jpg")
 
           else:
-              cv2.putText(results, 'You have a triangle shaped face! Rock a bun,short length, or shoulder length haircut since your forehead is more wider',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
+              x = 'Triangle shaped face: bun, short length, shoulder length'
               img1 = cv2.imread("Women/TriangleW/Bun.jpg")
               img2 = cv2.imread("Women/TriangleW/ShortLen.jpg")
               img3 = cv2.imread("Women/TriangleW/ShoulderLen.jpg")
@@ -226,19 +203,13 @@ def some_shit(imagepath, sex):
       if ovalsimilarity<10:
         print('diamond shape. line2 & line4 are similar and line2 is slightly larger')
         if sex is "Male":
-            cv2.putText(results,
-                        'You have a diamond shaped face! Rock a brushed back cut,buzz cut or undercut part',
-                        linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                        color=(0, 255, 0), thickness=2)
+            x= 'Diamond shaped face: brushed back, buzz, undercut'
             img1 = cv2.imread("Men/Diamond/BrushedBack.jpg")
             img2 = cv2.imread("Men/Diamond/Buzz.jpg")
             img3 = cv2.imread("Men/Diamond/Undercut.jpg")
 
         else:
-            cv2.putText(results,
-                        'You have a diamond shaped face! Rock a bun,ponytail, or short length haircut',
-                        linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                        color=(0, 255, 0), thickness=2)
+            x = 'Diamond shaped face: bun, ponytail, short length'
             img1 = cv2.imread("Women/DiamondW/Bun.jpg")
             img2 = cv2.imread("Women/DiamondW/Ponytail.jpg")
             img3 = cv2.imread("Women/DiamondW/ShortLen.jpg")
@@ -247,18 +218,14 @@ def some_shit(imagepath, sex):
         if angle<160:
           print('rectangular. face length is largest and jawline are angular ')
           if sex is "Male":
-              cv2.putText(results,
-                          'You have a rectangular shaped face! Rock a fringe cut,sidepart cut or undercut since your forehead is face length is largest and jawline are angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
+              x = 'Rectangle shaped face: fringe, sidepart, undercut'
               img1 = cv2.imread("Men/Rectangle/Fringe.jpg")
               img2 = cv2.imread("Men/Rectangle/SidePart.jpg")
               img3 = cv2.imread("Men/Rectangle/Undercut.jpg")
 
           else:
-              cv2.putText(results, 'You have a rectangular shaped face! Rock bangs,a bun, or shoulder length haircut since your forehead is face length is largest and jawline are angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
+
+              x= 'Rectangle shaped face: bangs, bun, shoulder length haircut'
               img1 = cv2.imread("Women/RectangleW/Bangs.jpg")
               img2 = cv2.imread("Women/RectangleW/Bun.jpg")
               img3 = cv2.imread("Women/RectangleW/ShoulderLen.jpg")
@@ -266,18 +233,16 @@ def some_shit(imagepath, sex):
         else:
           print('oblong. face length is largest and jawlines are not angular')
           if sex is "Male":
-              cv2.putText(results,
-                          'You have a oblong shaped face! Rock a buzz cut,fringe cut or side part cut since your face length is largest and jawlines are not angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
+              x= 'Oblong shaped face: buzz, fringe, side part cut'
               img1 = cv2.imread("Men/Oblong/Buzz.jpg")
               img2 = cv2.imread("Men/Oblong/Fringe.jpg")
               img3 = cv2.imread("Men/Oblong/SidePart.jpg")
 
           else:
-              cv2.putText(results, 'You have a oblong shaped face! Rock braids,a ponytail, or a shoulder length since your face length is largest and jawlines are not angular',
-                          linepointbottom, fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
-                          color=(0, 255, 0), thickness=2)
+              #x = 'You have a oblong shaped face! Rock braids,a ponytail, or a shoulder length since your face length is largest and jawlines are not angular'
+              x = 'Oblong shaped face: braids,ponytail,shoulder length'
+
+
               img1 = cv2.imread("Women/OblongW/Braids.jpg")
               img2 = cv2.imread("Women/OblongW/Ponytail.jpg")
               img3 = cv2.imread("Women/OblongW/ShoulderLen.jpg")
@@ -293,6 +258,11 @@ def some_shit(imagepath, sex):
     gu = np.concatenate((gu,img3),axis=1)
 
     output = np.concatenate((output, gu), axis=0)
+    output = np.concatenate((output,text),axis=0)
+    cv2.putText(output,
+                x,
+                org=(0, 1100), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1,
+                color=(255, 255, 255), thickness=3)
     #output = np.concatenate((output, img2), axis=0)
     # output = np.concatenate((output, img3), axis=0)
     cv2.imshow('output',output)

@@ -20,7 +20,7 @@ def min():
         if event == psg.WIN_CLOSED or event == 'Male' or event == 'Female':
             window.close()
             file_path = values
-            essential.some_shit(str(file_path['-IN-']),str(event))
+            essential.calculate_shape(str(file_path['-IN-']),str(event))
 
 
 
