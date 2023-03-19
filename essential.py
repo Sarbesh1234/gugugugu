@@ -232,16 +232,20 @@ def some_shit(imagepath, sex):
                           color=(0, 255, 0), thickness=2)
               img1 = cv2.imread("Women/Square/Bangs.jpg")
               img2 = cv2.imread("Women/Square/LongLen.jpg")
-              img3 = cv2.imread("Ponytail/Square/Ponytail.jpg")
+              img3 = cv2.imread("Women/Square/Ponytail.jpg")
           break;
       print("Damn! Contact the developer")
 
-    img1 = cv2.resize(img1, (504,500)) # axis zero
-    img2 = cv2.resize(img2, (504,500)) # axis one
-    # img3 = cv2.resize(img3, (1008,500))
+    img1 = cv2.resize(img1, (336,500)) # axis zero
+    img2 = cv2.resize(img2, (336,500)) # axis one
+    img3 = cv2.resize(img3, (336,500))
     output = np.concatenate((original,results), axis=1)
-    output = np.concatenate((output, img1), axis=0)
-    output = np.concatenate((output, img2), axis=1)
+
+    gu = np.concatenate((img1,img2),axis=1)
+    gu = np.concatenate((gu,img3),axis=1)
+
+    output = np.concatenate((output, gu), axis=0)
+    #output = np.concatenate((output, img2), axis=0)
     # output = np.concatenate((output, img3), axis=0)
     cv2.imshow('output',output)
     cv2.waitKey(delay=0)
